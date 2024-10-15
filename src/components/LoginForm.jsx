@@ -3,15 +3,14 @@ import axios from 'axios';
 import '../styles/LoginForm.css';
 
 function LoginForm({ onLoginSuccess }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const email = `${username}@sanjuandelacosta.cl`;
     axios.post('http://localhost:8000/api/login', {
-      email: `${username}@sanjuandelacosta.cl`,
+      email: `${email}@sanjuandelacosta.cl`,
       password: password
     })
       .then(response => {
@@ -30,12 +29,12 @@ function LoginForm({ onLoginSuccess }) {
         <h2>Iniciar Sesión</h2>
         {error && <p className="error">{error}</p>}
         <div className="input-group">
-          <label htmlFor="username">Correo</label>
+          <label htmlFor="email">Correo</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Ingrese el correo (sin @sanjuandelacosta.cl)"
             required
           />
