@@ -3,6 +3,7 @@ import TextInput from "../components/TextInput";
 import { useForm } from "react-hook-form";
 import '../styles/FormularioPage.css';
 import SelectInput from "../components/SelectInput";
+import Solicitudes from '../components/getSolicitudes';
 
 const FormularioPages = () => {
     const { register, watch } = useForm();
@@ -39,6 +40,7 @@ const FormularioPages = () => {
                 {...register('region')}
             />
             <TextInput id="apellidoPaterno" label="Apellido Paterno" {...register('apellidoPaterno')} />
+            <Solicitudes/>
             <button type="submit">Registrar Cita</button>
         </form>
     );
