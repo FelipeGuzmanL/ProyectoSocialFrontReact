@@ -25,6 +25,7 @@
     border: none;
     color: white;
     cursor: pointer;
+    max-width: 10%;
   }
   
   .logout-button:hover {
