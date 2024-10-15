@@ -8,10 +8,10 @@ function RequestForm({ onRequestAdded }) {
     rut: '',
     digito_verificador: '',
     fecha_solicitud: '',
-    sector: 'Costa Norte',
+    sector: '',
     motivo_solicitud: '',
     contacto: '',
-    estado_solicitud: 'Ingresado',
+    estado_solicitud: '',
     localidad: ''
   });
 

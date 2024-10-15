@@ -1,26 +1,59 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginForm.css';
+import Cookies from 'js-cookie';
 
 function LoginForm({ onLoginSuccess }) {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/api/login', {
-      email: `${email}@sanjuandelacosta.cl`,
+    const email = `${username}@sanjuandelacosta.cl`;
+
+    const datos = {
+      email: email,
       password: password
-    })
-      .then(response => {
-        console.log(email);
-        onLoginSuccess(response.data.token);  // Guardar el token y pasar a la aplicación principal
+    };
+
+    console.log(datos);
+
+    axios.defaults.withCredentials = true;
+
+    const getCsrfToken = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+        console.log('CSRF Cookie Set:', response);
+      } catch (error) {
+        console.error('Error al obtener CSRF cookie:', error);
+      }
+    };
+
+    const login = async () => {
+      await getCsrfToken();
+
+      const csrfToken = Cookies.get('XSRF-TOKEN');
+
+      console.log(csrfToken);
+
+      axios.post(`${process.env.REACT_APP_POST_LOGIN}`, datos, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-XSRF-TOKEN': csrfToken, // Enviar el token CSRF
+        }
       })
-      .catch(error => {
-        setError('Credenciales inválidas');
-        console.log(email);
-      });
+        .then(response => {
+          console.log(response.data.token);
+          onLoginSuccess(response.data.token);  // Guardar el token y pasar a la aplicación principal
+        })
+        .catch(error => {
+          setError('Credenciales inválidas');
+          console.log(error);
+        });
+    }
+
+    login();
   };
 
   return (
@@ -29,12 +62,12 @@ function LoginForm({ onLoginSuccess }) {
         <h2>Iniciar Sesión</h2>
         {error && <p className="error">{error}</p>}
         <div className="input-group">
-          <label htmlFor="email">Correo</label>
+          <label htmlFor="username">Correo</label>
           <input
             type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="Ingrese el correo (sin @sanjuandelacosta.cl)"
             required
           />
