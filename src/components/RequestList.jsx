@@ -16,7 +16,13 @@ function RequestList() {
   }, []);
 
   const handleGeneratePDF = (id) => {
-    axios.get(`http://localhost:8000/api/solicitudes/${id}/pdf`, { responseType: 'blob' })
+    const token = localStorage.getItem('authToken'); // Obtener el token
+    axios.get(`http://localhost:8000/api/solicitudes/${id}/pdf`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Enviar el token en el header
+      },
+      responseType: 'blob', // Recibir el PDF como blob
+    })
       .then(response => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
@@ -27,6 +33,7 @@ function RequestList() {
       })
       .catch(error => {
         alert('Error al generar el PDF.');
+        console.error('Error:', error);
       });
   };
 
