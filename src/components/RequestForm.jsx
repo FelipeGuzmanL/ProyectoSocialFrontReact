@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/RequestForm.css';
+import Cookies from 'js-cookie';
 
 function RequestForm({ onRequestAdded }) {
   const [formData, setFormData] = useState({
@@ -22,16 +23,40 @@ function RequestForm({ onRequestAdded }) {
     });
   };
 
+  console.log(formData);
+
   const handleSubmit = (e) => {
+    
     e.preventDefault();
-    axios.post('http://localhost:8000/api/solicitudes', formData)
-      .then(response => {
-        alert('Solicitud ingresada con éxito');
-        onRequestAdded();  // Notificar que la solicitud fue agregada
-      })
-      .catch(error => {
-        alert('Error al ingresar la solicitud.');
-      });
+
+    const getCsrfToken = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+          console.log('CSRF Cookie Set:', response);
+        } catch (error) {
+          console.error('Error al obtener CSRF cookie:', error);
+        }
+      };
+
+    const EnviarDatos = async () => {
+        await getCsrfToken();
+        const csrfToken = Cookies.get('XSRF-TOKEN');
+            axios.post('http://localhost:8000/api/solicitudes', formData, {
+                headers:{
+                    'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': csrfToken, // Enviar el token CSRF
+                }
+            })
+        .then(response => {
+            console.log(response.data);
+            alert('Solicitud ingresada con éxito');
+            onRequestAdded();  // Notificar que la solicitud fue agregada
+        })
+        .catch(error => {
+            alert('Error al ingresar la solicitud.');
+        });
+    };
+    EnviarDatos();
   };
 
   return (

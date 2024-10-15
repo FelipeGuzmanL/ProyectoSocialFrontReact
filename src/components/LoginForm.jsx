@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginForm.css';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 
-function LoginForm({ onLoginSuccess }) {
+
+function LoginForm({ setAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Inicializar el hook de navegación
+
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -44,8 +49,14 @@ function LoginForm({ onLoginSuccess }) {
         }
       })
         .then(response => {
-          console.log(response.data.token);
-          onLoginSuccess(response.data.token);  // Guardar el token y pasar a la aplicación principal
+          console.log(response.data);
+          const token = response.data.token;
+
+          // Guardar el token en localStorage o sessionStorage
+          localStorage.setItem('authToken', token);
+
+          setAuthenticated(true); // Actualizar el estado de autenticación
+          navigate('/home'); // Redirigir a la página principal
         })
         .catch(error => {
           setError('Credenciales inválidas');

@@ -4,16 +4,16 @@ import RequestList from '../components/RequestList';
 // import SearchRequests from '../components/SearchRequests';
 import Navbar from '../components/Navbar';
 
-function HomePage({ setAuthenticated }) {
+function FormularioList({ setAuthenticated }) {
   return (
     <div>
       <Navbar setAuthenticated={setAuthenticated} />
-      <h1>Menú Principal</h1>
-      <RequestForm />
-      {/* <RequestList /> */}
+      <h1>Lista de Formularios</h1>
+      {/* <RequestForm /> */}
+      <RequestList />
       {/* <SearchRequests /> */}
     </div>
   );
 }
 
-export default HomePage;
+export default FormularioList;
