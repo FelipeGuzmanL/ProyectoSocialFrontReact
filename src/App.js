@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login';
-import Formulario from './components/Formulario';
-import FormularioPages from './pages/FormularioPage';
-import Solicitudes from './components/getSolicitudes';
+
+import React, { useState } from 'react';
+import './App.css';
+import LoginForm from './components/LoginForm';
+import HomePage from './pages/HomePage';
 
 function App() {
+  const [isAuthenticated, setAuthenticated] = useState(false);
+
   return (
     <div className="App">
-      <Router>
-          <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/formulario" element={<FormularioPages />} />
-              <Route path="/getSolicitudes" element={<Solicitudes />} />
-          </Routes>
-      </Router>
+      {!isAuthenticated ? (
+        <LoginForm setAuthenticated={setAuthenticated} />
+      ) : (
+        <HomePage setAuthenticated={setAuthenticated} />
+      )}
     </div>
   );
 }
 
 export default App;
+
 
 
