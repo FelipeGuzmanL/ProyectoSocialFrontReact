@@ -7,6 +7,7 @@ import RequestForm from './components/RequestForm'; // Importar tu formulario
 import RequestList from './components/RequestList';
 import FormularioList from './pages/FormularioList';
 import FormularioForm from './pages/FormularioForm';
+import BuscarFormulario from './pages/FormularioRequest';
 
 function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -55,6 +56,18 @@ function App() {
               )
             }
           />
+
+          <Route 
+            path="/busqueda-solicitud" 
+            element={
+              isAuthenticated ? (
+                <BuscarFormulario /> // Mostrar el formulario solo si está autenticado
+              ) : (
+                <Navigate to="/" replace /> // Redirigir si no está autenticado
+              )
+            }
+          />
+          
         </Routes>
       </div>
     </Router>
