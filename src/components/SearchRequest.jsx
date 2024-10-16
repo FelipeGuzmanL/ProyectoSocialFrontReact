@@ -28,7 +28,7 @@ function SearchRequest() {
       rut: searchRUT,
       sector: searchSector
     };
-    axios.get('http://localhost:8000/api/solicitudes/buscar', {
+    axios.get('http://localhost:8000/api/solicitudes', {
       params,
       headers: {
         Authorization: `Bearer ${token}`, // Enviar el token
