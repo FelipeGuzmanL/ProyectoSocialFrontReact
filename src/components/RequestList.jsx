@@ -89,7 +89,7 @@ function RequestList() {
               <td>{request.rut}</td>
               <td>{request.fecha_solicitud}</td>
               <td>{request.estado_solicitud}</td>
-              <td>
+              <td className='botonera'>
                 <button onClick={() => handleGeneratePDF(request.id)}>Generar PDF</button>
                 <button onClick={() => handleEditRequest(request.id)}>Editar</button>
                 <button onClick={() => handleDeleteRequest(request.id)}>Eliminar</button>

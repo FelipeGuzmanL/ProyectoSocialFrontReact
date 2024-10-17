@@ -4,7 +4,15 @@
     margin: auto;
     padding: 2rem;
   }
+
+  .botonera {
+    display: flex;
+  }
   
+  .request-list button {
+    width: 50%;
+  }
+
   h2 {
     text-align: center;
     margin-bottom: 1rem;
