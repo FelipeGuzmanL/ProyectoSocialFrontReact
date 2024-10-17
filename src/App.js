@@ -3,11 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 import LoginForm from './components/LoginForm';
 import HomePage from './pages/HomePage';
-import RequestForm from './components/RequestForm'; // Importar tu formulario
-import RequestList from './components/RequestList';
+// import RequestForm from './components/RequestForm'; // Importar tu formulario
+// import RequestList from './components/RequestList';
 import FormularioList from './pages/FormularioList';
 import FormularioForm from './pages/FormularioForm';
 import BuscarFormulario from './pages/FormularioRequest';
+// import EditRequest from './components/EditRequest';
+import FormularioEdit from './pages/FormularioEdit';
+
 
 function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -16,6 +19,17 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+        <Route 
+            path="/editar-solicitud/:id"
+            element={
+              isAuthenticated ? (
+                <FormularioEdit /> // Mostrar el formulario solo si está autenticado
+              ) : (
+                <Navigate to="/" replace /> // Redirigir si no está autenticado
+              )
+            }
+          />
+          
           <Route 
             path="/" 
             element={
@@ -67,7 +81,7 @@ function App() {
               )
             }
           />
-          
+        
         </Routes>
       </div>
     </Router>

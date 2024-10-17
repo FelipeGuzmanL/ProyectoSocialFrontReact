@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/RequestList.css';
+import Cookies from 'js-cookie';
 
 function RequestList() {
   const [requests, setRequests] = useState([]);
@@ -14,6 +15,32 @@ function RequestList() {
         alert('Error al cargar solicitudes.');
       });
   }, []);
+
+  const handleDeleteRequest = (id) => {
+    const csrfToken = Cookies.get('XSRF-TOKEN');
+    const token = localStorage.getItem('authToken');
+    
+    axios.delete(`http://localhost:8000/api/solicitudes/${id}`, {
+      headers: {
+        'X-XSRF-TOKEN': csrfToken,
+        Authorization: `Bearer ${token}`,
+        
+      }
+    })
+    .then(response => {
+      alert('Solicitud eliminada correctamente');
+      setRequests(requests.filter(request => request.id !== id)); // Actualizar la lista
+    })
+    .catch(error => {
+      alert('Error al eliminar la solicitud.');
+      console.error('Error:', error);
+    });
+  };
+
+  const handleEditRequest = (id) => {
+    // Redirigir a la página de edición (ejemplo)
+    window.location.href = `/editar-solicitud/${id}`;
+  };
 
   const handleGeneratePDF = (id) => {
     const token = localStorage.getItem('authToken'); // Obtener el token
@@ -36,7 +63,7 @@ function RequestList() {
         console.error('Error:', error);
       });
   };
-
+  
   return (
     <div className="request-list">
       <h2>Listado de Solicitudes</h2>
@@ -48,7 +75,7 @@ function RequestList() {
             <th>RUT</th>
             <th>Fecha de Solicitud</th>
             <th>Estado</th>
-            <th>Acciones</th> {/* Nueva columna de acciones */}
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -60,8 +87,9 @@ function RequestList() {
               <td>{request.fecha_solicitud}</td>
               <td>{request.estado_solicitud}</td>
               <td>
-                {/* Botón para generar el PDF */}
                 <button onClick={() => handleGeneratePDF(request.id)}>Generar PDF</button>
+                <button onClick={() => handleEditRequest(request.id)}>Editar</button>
+                <button onClick={() => handleDeleteRequest(request.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
