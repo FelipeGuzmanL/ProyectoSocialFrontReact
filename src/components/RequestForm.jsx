@@ -12,7 +12,7 @@ function RequestForm({ onRequestAdded }) {
     sector: '',
     motivo_solicitud: '',
     contacto: '',
-    estado_solicitud: '',
+    estado: '',
     localidad: ''
   });
 
@@ -22,8 +22,6 @@ function RequestForm({ onRequestAdded }) {
       [e.target.name]: e.target.value
     });
   };
-
-  console.log(formData);
 
   const handleSubmit = (e) => {
     
@@ -41,16 +39,19 @@ function RequestForm({ onRequestAdded }) {
     const EnviarDatos = async () => {
         await getCsrfToken();
         const csrfToken = Cookies.get('XSRF-TOKEN');
+        const token = localStorage.getItem('authToken'); // Obtener el token del almacenamiento
+        console.log('datos desde React', formData);
             axios.post('http://localhost:8000/api/solicitudes', formData, {
                 headers:{
                     'Content-Type': 'application/json',
                     'X-XSRF-TOKEN': csrfToken, // Enviar el token CSRF
+                    Authorization: `Bearer ${token}`, // Enviar el token en el header
                 }
             })
         .then(response => {
             console.log(response.data);
             alert('Solicitud ingresada con éxito');
-            onRequestAdded();  // Notificar que la solicitud fue agregada
+            //onRequestAdded();  // Notificar que la solicitud fue agregada
         })
         .catch(error => {
             alert('Error al ingresar la solicitud.');
@@ -78,6 +79,7 @@ function RequestForm({ onRequestAdded }) {
       <div className="input-group">
         <label>Sector</label>
         <select name="sector" value={formData.sector} onChange={handleChange}>
+          <option value="" disabled hidden>-- SELECCIONE SECTOR --</option>
           <option value="Costa Norte">Costa Norte</option>
           <option value="Costa Sur">Costa Sur</option>
         </select>
@@ -92,7 +94,8 @@ function RequestForm({ onRequestAdded }) {
       </div>
       <div className="input-group">
         <label>Estado de Solicitud</label>
-        <select name="estado_solicitud" value={formData.estado_solicitud} onChange={handleChange}>
+        <select name="estado" value={formData.estado} onChange={handleChange}>
+          <option value="" disabled hidden>-- SELECCIONE ESTADO --</option>
           <option value="Ingresado">Ingresado</option>
           <option value="Rechazado">Rechazado</option>
         </select>

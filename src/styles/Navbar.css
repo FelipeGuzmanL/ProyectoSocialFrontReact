@@ -1,4 +1,5 @@
 .navbar {
+<<<<<<< HEAD
     background-color: #74c1d3;
     padding: 1rem;
     display: flex;
@@ -32,3 +33,63 @@
     background-color: #d6891c;
   }
   
+=======
+  background-color: #74c1d3;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Contenedor izquierdo: logo + enlaces de navegación */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre el logo y los botones */
+}
+
+/* Logo */
+.navbar-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Lista de enlaces de navegación */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem; /* Espacio entre los botones */
+  margin: 0;
+  padding: 0;
+}
+
+/* Enlaces individuales */
+.navbar-links li button {
+  background-color: #006b75;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar-links li button:hover {
+  background-color: #004d4f;
+}
+
+/* Botón de logout alineado a la derecha */
+.logout-button {
+  background-color: #e79d1e;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  max-width: 10%;
+}
+
+.logout-button:hover {
+  background-color: #d6891c;
+}
+>>>>>>> 4bca791e8c9e8bcfc8ed96accfb984c4b08db5ff
