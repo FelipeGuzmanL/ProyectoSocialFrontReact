@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/RequestList.css';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function RequestList() {
   const [requests, setRequests] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/solicitudes')
@@ -39,7 +41,8 @@ function RequestList() {
 
   const handleEditRequest = (id) => {
     // Redirigir a la página de edición (ejemplo)
-    window.location.href = `/editar-solicitud/${id}`;
+    navigate(`/editar-solicitud/${id}`)
+    // window.location.href = `/editar-solicitud/${id}`;
   };
 
   const handleGeneratePDF = (id) => {

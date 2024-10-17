@@ -23,7 +23,7 @@ function App() {
             path="/editar-solicitud/:id"
             element={
               isAuthenticated ? (
-                <FormularioEdit /> // Mostrar el formulario solo si está autenticado
+                <FormularioEdit setAuthenticated={setAuthenticated}/> // Mostrar el formulario solo si está autenticado
               ) : (
                 <Navigate to="/" replace /> // Redirigir si no está autenticado
               )

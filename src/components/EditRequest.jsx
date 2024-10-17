@@ -20,9 +20,9 @@ function EditRequest() {
   const token = localStorage.getItem('authToken');
 
   useEffect(() => {
-    // Hacer la solicitud GET para obtener los datos de la solicitud seleccionada
-    const csrfToken = Cookies.get('XSRF-TOKEN');
-    const token = localStorage.getItem('authToken');
+    // // Hacer la solicitud GET para obtener los datos de la solicitud seleccionada
+    // const csrfToken = Cookies.get('XSRF-TOKEN');
+    // const token = localStorage.getItem('authToken');
     axios.get(`http://localhost:8000/api/solicitudes/${id}`, {
       headers: {
         'X-XSRF-TOKEN': csrfToken,
@@ -30,13 +30,14 @@ function EditRequest() {
       },
     })
     .then(response => {
+      console.log(response);
       setRequestData(response.data); // Pre-rellenar los campos con la data obtenida
     })
     .catch(error => {
       console.error('Error al cargar la solicitud:', error);
       alert('Error al cargar la solicitud.');
     });
-  }, [id, csrfToken, token]);
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
