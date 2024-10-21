@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie'; // Para obtener el token CSRF
+import '../styles/EditForm.css';
 import { useParams, useNavigate } from 'react-router-dom'; // Para obtener el ID de la solicitud desde la URL y redirigir
 
 function EditRequest() {
@@ -13,6 +14,8 @@ function EditRequest() {
     estado_solicitud: '',
     sector: '',
     motivo_solicitud: '',
+    localidad: '',
+    contacto: '',
     // Otros campos que se necesite
   });
   
@@ -20,9 +23,6 @@ function EditRequest() {
   const token = localStorage.getItem('authToken');
 
   useEffect(() => {
-    // // Hacer la solicitud GET para obtener los datos de la solicitud seleccionada
-    // const csrfToken = Cookies.get('XSRF-TOKEN');
-    // const token = localStorage.getItem('authToken');
     axios.get(`http://localhost:8000/api/solicitudes/${id}`, {
       headers: {
         'X-XSRF-TOKEN': csrfToken,
@@ -60,7 +60,7 @@ function EditRequest() {
     })
     .then(response => {
       alert('Solicitud actualizada correctamente.');
-      navigate('/listado-solicitudes'); // Redirigir al listado de solicitudes
+      navigate('/listado-solicitud'); // Redirigir al listado de solicitudes
     })
     .catch(error => {
       console.error('Error al actualizar la solicitud:', error);
@@ -137,6 +137,26 @@ function EditRequest() {
           <textarea
             name="motivo_solicitud"
             value={requestData.motivo_solicitud}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Localidad:
+          <textarea
+            name="localidad"
+            value={requestData.localidad}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Contacto:
+          <textarea
+            name="contacto"
+            value={requestData.contacto}
             onChange={handleInputChange}
             required
           />
