@@ -30,7 +30,7 @@ function RequestForm({ onRequestAdded }) {
     const getCsrfToken = async () => {
         try {
           const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie');
-          console.log('CSRF Cookie Set:', response);
+          // console.log('CSRF Cookie Set:', response);
         } catch (error) {
           console.error('Error al obtener CSRF cookie:', error);
         }
@@ -40,7 +40,7 @@ function RequestForm({ onRequestAdded }) {
         await getCsrfToken();
         const csrfToken = Cookies.get('XSRF-TOKEN');
         const token = localStorage.getItem('authToken'); // Obtener el token del almacenamiento
-        console.log('datos desde React', formData);
+        // console.log('datos desde React', formData);
             axios.post('http://localhost:8000/api/solicitudes', formData, {
                 headers:{
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ function RequestForm({ onRequestAdded }) {
                 }
             })
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             alert('Solicitud ingresada con éxito');
             //onRequestAdded();  // Notificar que la solicitud fue agregada
         })

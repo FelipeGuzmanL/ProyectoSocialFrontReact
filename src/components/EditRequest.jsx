@@ -30,7 +30,7 @@ function EditRequest() {
       },
     })
     .then(response => {
-      console.log(response);
+      // console.log(response);
       setRequestData(response.data); // Pre-rellenar los campos con la data obtenida
     })
     .catch(error => {

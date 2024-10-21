@@ -1,5 +1,5 @@
 /* Contenedor de la página completa */
-body {
+.body {
   height: 100vh;
   margin: 0;
   display: flex;
@@ -7,7 +7,7 @@ body {
   align-items: center;
   background-size: cover;
   background-position: center;
-  backdrop-filter: blur(8px); /* Desenfoque del fondo */
+  backdrop-filter: blur(8px);
 }
 
 .login-wrapper {

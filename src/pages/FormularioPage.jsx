@@ -20,7 +20,7 @@ const FormularioPages = () => {
             apellido: apellidoPaterno
         };
 
-        console.log(formData);
+        // console.log(formData);
     };
 
     return (

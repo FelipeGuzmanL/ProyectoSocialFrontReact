@@ -22,14 +22,14 @@ function LoginForm({ setAuthenticated }) {
       password: password
     };
 
-    console.log(datos);
+    // console.log(datos);
 
     axios.defaults.withCredentials = true;
 
     const getCsrfToken = async () => {
       try {
         const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie');
-        console.log('CSRF Cookie Set:', response);
+        // console.log('CSRF Cookie Set:', response);
       } catch (error) {
         console.error('Error al obtener CSRF cookie:', error);
       }
@@ -40,7 +40,7 @@ function LoginForm({ setAuthenticated }) {
 
       const csrfToken = Cookies.get('XSRF-TOKEN');
 
-      console.log(csrfToken);
+      // console.log(csrfToken);
 
       axios.post(`${process.env.REACT_APP_POST_LOGIN}`, datos, {
         headers: {
@@ -49,7 +49,7 @@ function LoginForm({ setAuthenticated }) {
         }
       })
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           const token = response.data.token;
 
           // Guardar el token en localStorage o sessionStorage

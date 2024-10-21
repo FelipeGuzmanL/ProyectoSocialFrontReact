@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import LoginForm from './components/LoginForm';
+// import LoginForm from './components/LoginForm';
 import HomePage from './pages/HomePage';
 // import RequestForm from './components/RequestForm'; // Importar tu formulario
 // import RequestList from './components/RequestList';
@@ -10,6 +10,7 @@ import FormularioForm from './pages/FormularioForm';
 import BuscarFormulario from './pages/FormularioRequest';
 // import EditRequest from './components/EditRequest';
 import FormularioEdit from './pages/FormularioEdit';
+import Login from './pages/Login';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
               isAuthenticated ? (
                 <Navigate to="/home" replace /> // Redirigir si ya está autenticado
               ) : (
-                <LoginForm setAuthenticated={setAuthenticated} />
+                <Login setAuthenticated={setAuthenticated} />
               )
             }
           />
