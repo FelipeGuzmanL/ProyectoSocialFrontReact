@@ -80,7 +80,7 @@ function LoginForm({ setAuthenticated }) {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Ingrese el correo (sin @sanjuandelacosta.cl)"
+            placeholder="Usuario"
             required
           />
         </div>
