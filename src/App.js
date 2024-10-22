@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* {isAuthenticated && <Navbar onLogout={handleLogout} />} */}
+        {isAuthenticated && <Navbar onLogout={handleLogout} />}
         <Routes>
           <Route 
             path="/editar-solicitud/:id"

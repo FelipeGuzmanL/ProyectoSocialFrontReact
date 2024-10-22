@@ -9,7 +9,7 @@ import EditRequest from '../components/EditRequest';
 function FormularioEdit({ setAuthenticated }) {
   return (
     <div>
-      <Navbar setAuthenticated={setAuthenticated} />
+      {/* <Navbar setAuthenticated={setAuthenticated} /> */}
       <h1>Lista de Formularios</h1>
       {/* <RequestForm /> */}
       {/* <RequestList /> */}

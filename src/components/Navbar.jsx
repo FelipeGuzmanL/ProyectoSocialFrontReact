@@ -8,12 +8,10 @@ import Cookies from 'js-cookie';
 function Navbar({ onLogout }) {
   const navigate = useNavigate();
 
-  
-
   const handleLogout = () => {
     const token = localStorage.getItem('authToken'); // Obtiene el token de localStorage
     const csrfToken = Cookies.get('XSRF-TOKEN');
-    console.log(csrfToken);
+
     axios.defaults.withCredentials = true;
     axios.post('http://localhost:8000/api/logout', {}, {
       headers: {

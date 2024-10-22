@@ -15,19 +15,7 @@ function LoginForm({ setAuthenticated }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    axios.post('http://localhost:8000/api/login', { username, password })
-      .then(response => {
-        // Guardar el token en localStorage
-        localStorage.setItem('authToken', response.data.token);
-
-        // Actualizar el estado de autenticación
-        setAuthenticated(true);
-      })
-      .catch(error => {
-        console.error('Error al iniciar sesión:', error);
-      });
-
+    
     const email = `${username}@sanjuandelacosta.cl`;
 
     const datos = {

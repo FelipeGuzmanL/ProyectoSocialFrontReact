@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 function FormularioForm({ setAuthenticated }) {
   return (
     <div>
-      <Navbar setAuthenticated={setAuthenticated} />
+      {/* <Navbar setAuthenticated={setAuthenticated} /> */}
       <h1>Formulario de Solicitud</h1>
       <RequestForm />
       {/* <RequestList /> */}

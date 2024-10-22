@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 function HomePage({ setAuthenticated }) {
   return (
     <div>
-      <Navbar setAuthenticated={setAuthenticated} />
+      {/* <Navbar setAuthenticated={setAuthenticated} /> */}
       <h1>Menú Principal</h1>
       <RequestForm />
       {/* <RequestList /> */}
