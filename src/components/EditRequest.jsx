@@ -70,100 +70,102 @@ function EditRequest() {
 
   return (
     <div>
-      <h2>Editar Solicitud</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nombre Completo:
-          <input
-            type="text"
-            name="nombre_completo"
-            value={requestData.nombre_completo}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          RUT:
-          <input
-            type="text"
-            name="rut"
-            value={requestData.rut}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Fecha de Solicitud:
-          <input
-            type="date"
-            name="fecha_solicitud"
-            value={requestData.fecha_solicitud}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Estado de Solicitud:
-          <select
-            name="estado_solicitud"
-            value={requestData.estado_solicitud}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="Ingresado">Ingresado</option>
-            <option value="Rechazado">Rechazado</option>
-            <option value="Aprobado">Aprobado</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Sector:
-          <select
-            name="sector"
-            value={requestData.sector}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="Costa Norte">Costa Norte</option>
-            <option value="Costa Sur">Costa Sur</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Motivo de la Solicitud:
-          <textarea
-            name="motivo_solicitud"
-            value={requestData.motivo_solicitud}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Localidad:
-          <textarea
-            name="localidad"
-            value={requestData.localidad}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Contacto:
-          <textarea
-            name="contacto"
-            value={requestData.contacto}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        {/* Agregar más campos aquí si es necesario */}
-        <button type="submit">Guardar Cambios</button>
+      <form onSubmit={handleSubmit} className='formulario'>
+        <div className="edit-formulario">
+          <h2>Editar Solicitud</h2>
+          <label>
+            Nombre Completo:
+            <input
+              type="text"
+              name="nombre_completo"
+              value={requestData.nombre_completo}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            RUT:
+            <input
+              type="text"
+              name="rut"
+              value={requestData.rut}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Fecha de Solicitud:
+            <input
+              type="date"
+              name="fecha_solicitud"
+              value={requestData.fecha_solicitud}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Estado de Solicitud:
+            <select
+              name="estado_solicitud"
+              value={requestData.estado_solicitud}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="Ingresado">Ingresado</option>
+              <option value="Rechazado">Rechazado</option>
+              <option value="Aprobado">Aprobado</option>
+            </select>
+          </label>
+          <br />
+          <label>
+            Sector:
+            <select
+              name="sector"
+              value={requestData.sector}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="Costa Norte">Costa Norte</option>
+              <option value="Costa Sur">Costa Sur</option>
+            </select>
+          </label>
+          <br />
+          <label>
+            Motivo de la Solicitud:
+            <textarea
+              name="motivo_solicitud"
+              value={requestData.motivo_solicitud}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Localidad:
+            <textarea
+              name="localidad"
+              value={requestData.localidad}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Contacto:
+            <textarea
+              name="contacto"
+              value={requestData.contacto}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          {/* Agregar más campos aquí si es necesario */}
+          <button type="submit">Guardar Cambios</button>
+        </div>
       </form>
     </div>
   );

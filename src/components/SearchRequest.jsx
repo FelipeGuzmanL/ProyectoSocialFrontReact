@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/SearchRequest.css';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function SearchRequest() {
   const [requests, setRequests] = useState([]);
   const [searchID, setSearchID] = useState('');
   const [searchRUT, setSearchRUT] = useState('');
   const [searchSector, setSearchSector] = useState('');
+  const navigate = useNavigate(); 
   
   useEffect(() => {
     // Cargar todas las solicitudes inicialmente
@@ -88,7 +90,7 @@ function SearchRequest() {
 
   const handleEditRequest = (id) => {
     // Redirigir a la página de edición (ejemplo)
-    window.location.href = `/editar-solicitud/${id}`;
+    navigate(`/editar-solicitud/${id}`);
   };
 
   return (
