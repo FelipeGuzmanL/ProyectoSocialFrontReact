@@ -11,16 +11,21 @@ import BuscarFormulario from './pages/FormularioRequest';
 // import EditRequest from './components/EditRequest';
 import FormularioEdit from './pages/FormularioEdit';
 import Login from './pages/Login';
+import Navbar from './components/Navbar';
 
 
 function App() {
-  const [isAuthenticated, setAuthenticated] = useState(false);
-
+  const [isAuthenticated, setAuthenticated] = useState(!!localStorage.getItem('authToken'));
+  const handleLogout = () => {
+    // Cambia el estado de autenticación a false
+    setAuthenticated(false);
+  };
   return (
     <Router>
       <div className="App">
+        {/* {isAuthenticated && <Navbar onLogout={handleLogout} />} */}
         <Routes>
-        <Route 
+          <Route 
             path="/editar-solicitud/:id"
             element={
               isAuthenticated ? (
@@ -71,7 +76,6 @@ function App() {
               )
             }
           />
-
           <Route 
             path="/busqueda-solicitud" 
             element={
