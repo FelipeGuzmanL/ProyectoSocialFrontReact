@@ -61,51 +61,57 @@ function RequestForm({ onRequestAdded }) {
   };
 
   return (
-    <form className="request-form" onSubmit={handleSubmit}>
+        <form className="request-form" onSubmit={handleSubmit}>
       <h2>Formulario de Solicitud</h2>
-      <div className="input-group">
-        <label>Nombre Completo</label>
-        <input type="text" name="nombre_completo" value={formData.nombre_completo} onChange={handleChange} required />
+      <div className="input-nombre">
+        <label htmlFor="nombre">Nombre Completo</label>
+        <input type="text" id="nombre-input" name="nombre_completo" value={formData.nombre_completo} onChange={handleChange} required />
       </div>
-      <div className="input-group">
-        <label>RUT</label>
-        <input type="text" name="rut" value={formData.rut} onChange={handleChange} required />
-        <input type="text" name="digito_verificador" value={formData.digito_verificador} onChange={handleChange} required />
+      <div className="input-rut">
+        <label htmlFor="rut">RUT</label>
+        <div className="rut-digito">
+          <input type="text" id="rut-input" name="rut" value={formData.rut} onChange={handleChange} required />
+          <p> - </p>
+          <input type="text" id="diver-input" name="digito_verificador" value={formData.digito_verificador} onChange={handleChange} required />
+        </div>
       </div>
-      <div className="input-group">
-        <label>Fecha de Solicitud</label>
-        <input type="date" name="fecha_solicitud" value={formData.fecha_solicitud} onChange={handleChange} required />
+      <div className="input-fecha">
+        <label htmlFor="fecha_solicitud">Fecha de Solicitud</label>
+        <input type="date" id="fecha-input" name="fecha_solicitud" value={formData.fecha_solicitud} onChange={handleChange} required />
       </div>
-      <div className="input-group">
-        <label>Sector</label>
-        <select name="sector" value={formData.sector} onChange={handleChange}>
+      <div className="input-sector">
+        <label htmlFor="sector">Sector</label>
+        <select id="sector-input" name="sector" value={formData.sector} onChange={handleChange}>
           <option value="" disabled hidden>-- SELECCIONE SECTOR --</option>
           <option value="Costa Norte">Costa Norte</option>
           <option value="Costa Sur">Costa Sur</option>
         </select>
       </div>
-      <div className="input-group">
-        <label>Motivo de la Solicitud</label>
-        <textarea name="motivo_solicitud" value={formData.motivo_solicitud} onChange={handleChange} required></textarea>
+      <div className="input-motivo">
+        <label htmlFor="motivo_solicitud">Motivo de la Solicitud</label>
+        <textarea id="motivo-input" name="motivo_solicitud" value={formData.motivo_solicitud} onChange={handleChange} required></textarea>
       </div>
-      <div className="input-group">
-        <label>Contacto</label>
-        <input type="text" name="contacto" value={formData.contacto} onChange={handleChange} required />
+      <div className="input-contacto">
+        <label htmlFor="contacto">Contacto</label>
+        <input type="text" id="contacto-input" name="contacto" value={formData.contacto} onChange={handleChange} required />
       </div>
-      <div className="input-group">
-        <label>Estado de Solicitud</label>
-        <select name="estado" value={formData.estado} onChange={handleChange}>
+      <div className="input-estado">
+        <label htmlFor="estado">Estado de Solicitud</label>
+        <select id="estado-input" name="estado" value={formData.estado} onChange={handleChange}>
           <option value="" disabled hidden>-- SELECCIONE ESTADO --</option>
           <option value="Ingresado">Ingresado</option>
           <option value="Rechazado">Rechazado</option>
         </select>
       </div>
-      <div className="input-group">
-        <label>Localidad</label>
-        <input type="text" name="localidad" value={formData.localidad} onChange={handleChange} required />
+      <div className="input-localidad">
+        <label htmlFor="localidad">Localidad</label>
+        <input type="text" id="localidad-input" name="localidad" value={formData.localidad} onChange={handleChange} required />
       </div>
-      <button type="submit">Enviar Solicitud</button>
+      <div className="button-container">
+        <button type="submit" id="submit-button">Enviar Solicitud</button>
+      </div>
     </form>
+
   );
 }
 
